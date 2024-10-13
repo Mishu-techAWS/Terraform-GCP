@@ -31,7 +31,7 @@ pipeline {
         stage('Terraform Plan') {
             steps {
                 script {
-                    sh 'terraform plan  - destroy'
+                    sh 'terraform plan -destroy'
                 }
             }
         }
