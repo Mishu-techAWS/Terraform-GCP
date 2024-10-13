@@ -7,7 +7,7 @@ provider "google" {
 # Backend configuration to store the Terraform state in a GCS bucket
 terraform {
   backend "gcs" {
-    bucket  = var.gcs_bucket_name  # The bucket where the tfstate will be stored
+    bucket  = "mishal-devops-gcp-terraform"  # The bucket where the tfstate will be stored
     prefix  = "terraform/state"    # Folder/prefix in the bucket
   }
 }
