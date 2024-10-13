@@ -7,6 +7,12 @@ pipeline {
     }
 	
     stages {
+	    
+	stage('Clean Workspace') {
+            steps {
+                cleanWs()  // This will clean the workspace before running Terraform
+            }
+        }
         stage('Git Checkout') {
             steps {
                git branch: 'main', url: 'https://github.com/Mishu-techAWS/Terraform-GCP.git'
