@@ -23,7 +23,7 @@ pipeline {
         stage('Terraform Init') {
             steps {
                 script {
-                    sh ' terraform init -input=false -migrate-state'
+                    sh ' terraform init '
                 }
             }
         }
@@ -31,7 +31,7 @@ pipeline {
         stage('Terraform Plan') {
             steps {
                 script {
-                    sh 'terraform plan -out=tfplan'
+                    sh 'terraform plan -out=tfplan - destroy'
                 }
             }
         }
