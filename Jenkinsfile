@@ -6,17 +6,23 @@ pipeline {
 	
     }
 	
-    stages {
-	    
-	
-        stage('Git Checkout') {
+    stages {	
+        
+	stage('Clean Workspace') {
+            steps {
+                cleanWs()  // This will clean the workspace before running Terraform
+            }
+        }
+	stage('Git Checkout') {
             steps {
                git branch: 'main', url: 'https://github.com/Mishu-techAWS/Terraform-GCP.git'
             }
         }
-	stage('Clean Workspace') {
+	stage('Verify Files') {
             steps {
-                cleanWs()  // This will clean the workspace before running Terraform
+                // Print the working directory and list files
+                sh 'pwd'
+                sh 'ls -la'
             }
         }
         
@@ -31,7 +37,7 @@ pipeline {
         stage('Terraform Plan') {
             steps {
                 script {
-                    sh 'terraform plan -destroy'
+                    sh 'terraform plan -out=tfplan'
                 }
             }
         }
@@ -45,7 +51,7 @@ pipeline {
         stage('Terraform Apply') {
             steps {
                 script {
-                    sh 'terraform apply'
+                    sh 'terraform apply -auto-approve tfplan'
                 }
             }
         }
