@@ -45,7 +45,7 @@ pipeline {
         stage('Terraform Apply') {
             steps {
                 script {
-                    sh 'terraform apply tfplan'
+                    sh 'terraform apply'
                 }
             }
         }
