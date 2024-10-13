@@ -46,9 +46,5 @@ resource "google_compute_instance" "vm_instance" {
   }  
 }
 
-# Output instance IP address
-output "instance_ip" {
-  value = google_compute_instance.vm_instance.network_interface[0].access_config[0].nat_ip
-}
 
 
